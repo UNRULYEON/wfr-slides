@@ -172,7 +172,10 @@ body {
 
 .reveal code {
 	font-family: $codeFont;
-	text-transform: none;
+  text-transform: none;
+  background-color: rgb(245, 245, 245);
+  border-radius: 3px;
+  padding: 0 3px;
 }
 
 .reveal pre code {

@@ -153,7 +153,10 @@ body {
 
 .reveal code {
   font-family: monospace;
-  text-transform: none; }
+  text-transform: none;
+  background-color: whitesmoke;
+  border-radius: 3px;
+  padding: 0 3px; }
 
 .reveal pre code {
   display: block;
