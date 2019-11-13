@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<img class="plain" data-src="./images/code-1.png" width="650px"/>
+					<p>
+						The <code>stateful</code> widget is mounted and the state is set with <code>person: unloadedAsyncState()</code>.
+					</p>
+				</section>
+				<section>
+					<img class="plain" data-src="./images/code-2.png" width="650px"/>
+					<p>
+						The <code>async</code> widget checks what the state is of <code>s0.person</code>.
+						Because we set it to <code>unloadedAsyncState()</code>, the <code>async</code> widget does nothing.
+					</p>
+				</section>
+				<section>
+					<img class="plain" data-src="./images/code-3.png" width="650px"/>
+					<p>
+						Within the code, the state of <code>s0.person</code> is checked and based on the <code>kind</code>, the appropriate
+						view is rendered.
+					</p>
+				</section>
+				<section>
+					<img class="plain" data-src="./images/code-4.png" width="650px"/>
+					<p>
+						When clicking on the 'Load person' button, the state is updated and <code>person</code> is set to loading with
+						<code>loadingAsyncState(() => fetchPerson())</code>.
+					</p>
+				</section>
+				<section>
+					<img class="plain" data-src="./images/code-5.png" width="650px"/>
+					<p>
+						At this point, our mutated state is passed to the children of <code>any</code> and the <code>async</code>
+						widget checks what <code>s0.person</code> is. It sees that <code>s0.person</code> is mutated to loading
+						and fires the fetch.
+					</p>
+				</section>
+				<section>
+					<img class="plain" data-src="./images/code-6.png" width="650px"/>
+					<p>
+						After the fetch is complete, successful or not, the state is mutated with the result.
+					</p>
+				</section>
+				<section>
+					<img class="plain" data-src="./images/code-7.png" width="650px"/>
+					<p>
+						The state is updated with the output of the <code>async</code> widget.
+					</p>
+				</section>
+				<section>
+					<img class="plain" data-src="./images/code-8.png" width="650px"/>
+					<p>
+						The children of <code>stateful</code> are rerendered, and our <code>mkWidget</code> recieves the updated state.
+						Inside the widget, it checks if <code>s0.person</code> is loaded, which at this point is, and renders the result.
+					</p>
+				</section>
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			Reveal.initialize({
+				slideNumber: true,
+				// loop: true,
+				autoSlide: 10000,
+				autoSlideStoppable: true,
+				autoSlideMethod: Reveal.navigateNext,
+				transition: 'none',
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
